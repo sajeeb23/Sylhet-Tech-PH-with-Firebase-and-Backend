@@ -1,5 +1,7 @@
 import { useContext } from "react";
 import { AuthContext } from "../provider/AuthProvider";
+import { Link } from "react-router-dom";
+
 
 const SignUp = () => {
 
@@ -18,7 +20,7 @@ const SignUp = () => {
             console.log(result.user);
         })
         .catch(error => {
-            console.log(error);
+            console.error(error);
         })
 
 
@@ -27,7 +29,7 @@ const SignUp = () => {
         <div className="hero min-h-screen bg-base-200">
             <div className="hero-content flex-col lg:flex-row-reverse">
                 <div className="text-center lg:text-left">
-                    <h1 className="text-5xl font-bold">Login now!</h1>
+                    <h1 className="text-5xl font-bold">Sign up!</h1>
                    
                 </div>
                 <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
@@ -42,7 +44,7 @@ const SignUp = () => {
                             <label className="label">
                                 <span className="label-text">Name</span>
                             </label>
-                            <input type="text" name="name" placeholder="email" className="input input-bordered" required />
+                            <input type="text" name="name" placeholder="name" className="input input-bordered" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
@@ -63,6 +65,9 @@ const SignUp = () => {
                             <button className="btn btn-primary">Login</button>
                         </div>
                     </form>
+
+                    <p className="mx-auto mb-4">Already have an account? <Link to="/login" className="text-blue-700">Login</Link></p>
+
                 </div>
             </div>
         </div>

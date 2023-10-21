@@ -1,7 +1,16 @@
+import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../provider/AuthProvider";
 
 const Navbar = () => {
-    return (
+    const { user, logOut } = useContext(AuthContext);
+    const handleSignOut = () => {
+        logOut()
+        .then()
+        .catch()
+    }
+
+    return ( 
         <div>
             <div className="navbar bg-base-100 justify-between">
                 <div className="flex items-center">
@@ -31,12 +40,19 @@ const Navbar = () => {
                             My Cart
                         </NavLink>
 
-                        <NavLink to="/signup"
-                            className={({ isActive, isPending }) =>
-                                isPending ? "pending" : isActive ? "bg-blue-700 text-white py-2 px-3 rounded-r-xl" : "bg-blue-500 text-white py-2 px-3 rounded-r-xl"
-                            }>
-                            SignUp
-                        </NavLink>
+                        {
+                            user ?
+                                <NavLink className={"bg-blue-500 text-white py-2 px-3 rounded-r-xl"}>
+                                    <button onClick={handleSignOut} >SignOut</button>
+                                </NavLink>
+                                :
+                                <NavLink to="/signup"
+                                    className={({ isActive, isPending }) =>
+                                        isPending ? "pending" : isActive ? "bg-blue-700 text-white py-2 px-3 rounded-r-xl" : "bg-blue-500 text-white py-2 px-3 rounded-r-xl"
+                                    }>
+                                    SignUp
+                                </NavLink>
+                        }
 
                     </ul>
                     <div className="avatar">
