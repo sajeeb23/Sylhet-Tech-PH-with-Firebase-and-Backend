@@ -1,52 +1,83 @@
 /* eslint-disable react/prop-types */
 import { createContext, useEffect, useState } from "react";
 import app from "../firebase/firebase.config";
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
-
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signOut,
+  updateProfile,
+} from "firebase/auth";
 
 const auth = getAuth(app);
 export const AuthContext = createContext(null);
 
-const AuthProvider = ({children}) => {
+const AuthProvider = ({ children }) => {
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [photoURL, setPhotoURL] = useState(null); // Add this state variable
 
-    const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(true);
+  const createUser = (email, password, name, photoURL) => {
+    setLoading(true);
 
-    const createUser = (email, password)=>{
-        setLoading(true);
-        return createUserWithEmailAndPassword(auth, email, password);
-    }
-    
-    const signIn = (email, password) =>{
-        return signInWithEmailAndPassword(auth, email, password);
-    }
+    return createUserWithEmailAndPassword(auth, email, password)
+      .then((result) => {
+        // After successfully creating the user, update the user's photo URL
+        return updateProfile(result.user, {
+          displayName: name,
+          photoURL: photoURL,
+        })
+          .then(() => {
+            // Photo URL updated successfully
+            setPhotoURL(photoURL);
+            return result;
+          })
+          .catch((error) => {
+            console.error("Error updating photoURL: ", error);
+            throw error;
+          });
+      })
+      .catch((error) => {
+        console.error("Error creating user: ", error);
+        throw error;
+      });
+  };
 
-    const logOut = () => {
-        return signOut(auth);
-    }
+  const signIn = (email, password) => {
+    setLoading(true);
+    return signInWithEmailAndPassword(auth, email, password);
+  };
 
-    useEffect( () => {
-        const unSubscribe = onAuthStateChanged(auth, currentUser =>  {
-            console.log(currentUser);
-            setUser(currentUser)
-        });
-        return () => {
-            unSubscribe();
-        }
-    }, [])
+  const logOut = () => {
+    setLoading(true);
+    return signOut(auth);
+  };
 
-    const userInfo = {
-        user,
-        loading,
-        createUser,
-        signIn,
-        logOut
-    }
-    return (
-        <AuthContext.Provider value={userInfo}>
-            {children}
-        </AuthContext.Provider>
-    );
+  useEffect(() => {
+    const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      setLoading(false);
+    });
+    return () => {
+      unSubscribe();
+    };
+  }, []);
+
+  const userInfo = {
+    user,
+    loading,
+    photoURL,
+    createUser,
+    signIn,
+    logOut,
+  };
+
+  return (
+    <AuthContext.Provider value={userInfo}>
+      {children}
+    </AuthContext.Provider>
+  );
 };
 
 export default AuthProvider;

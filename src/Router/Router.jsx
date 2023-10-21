@@ -6,6 +6,7 @@ import MyCart from "../Pages/MyCart";
 import UpdateProducts from "../Components/UpdateProducts";
 import SignUp from "../Pages/SignUp";
 import Login from "../Pages/Login";
+import PrivateRoute from "./PrivateRoute";
 
 const myRoute = createBrowserRouter([
     {
@@ -21,12 +22,12 @@ const myRoute = createBrowserRouter([
 
         {
             path: '/addproduct',
-            element: <AddProduct></AddProduct>
+            element: <PrivateRoute><AddProduct></AddProduct></PrivateRoute>
         },
 
         {
             path:'/mycart',
-            element:<MyCart></MyCart>
+            element:<PrivateRoute><MyCart></MyCart></PrivateRoute>
         },
 
         {
@@ -40,7 +41,7 @@ const myRoute = createBrowserRouter([
         
         {
             path: '/updateProducts/:id',
-            element: <UpdateProducts></UpdateProducts>,
+            element: <PrivateRoute><UpdateProducts></UpdateProducts></PrivateRoute>,
             loader: ({params})=> fetch(`http://localhost:5000/products/${params.id}`)
         }
     ]
