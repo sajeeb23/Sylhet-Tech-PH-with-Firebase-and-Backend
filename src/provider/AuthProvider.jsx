@@ -16,20 +16,19 @@ export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [photoURL, setPhotoURL] = useState(null); // Add this state variable
+  const [photoURL, setPhotoURL] = useState(null);
 
   const createUser = (email, password, name, photoURL) => {
     setLoading(true);
 
     return createUserWithEmailAndPassword(auth, email, password)
       .then((result) => {
-        // After successfully creating the user, update the user's photo URL
+       
         return updateProfile(result.user, {
           displayName: name,
           photoURL: photoURL,
         })
           .then(() => {
-            // Photo URL updated successfully
             setPhotoURL(photoURL);
             return result;
           })

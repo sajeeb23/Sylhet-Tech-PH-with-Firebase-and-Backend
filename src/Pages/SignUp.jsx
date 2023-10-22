@@ -1,9 +1,10 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import { Link } from "react-router-dom";
 
 const SignUp = () => {
-  const { createUser, photoURL } = useContext(AuthContext);
+  const { createUser } = useContext(AuthContext);
+  const [photoURL, setPhotoURL] = useState("");
 
   const handleSignUp = (e) => {
     e.preventDefault();
@@ -15,6 +16,7 @@ const SignUp = () => {
 
     createUser(email, password, name, photo)
       .then((result) => {
+        setPhotoURL(photo);
         console.log(result.user);
       })
       .catch((error) => {
@@ -60,7 +62,7 @@ const SignUp = () => {
               </label>
               <input
                 type="text"
-                name="photo" // Make sure to match the input name
+                name="photo"
                 placeholder="photo URL"
                 className="input input-bordered"
                 required

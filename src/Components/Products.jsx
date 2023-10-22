@@ -7,7 +7,7 @@ const Products = ({ product }) => {
     const { name, brandname, type, price, description, photo, _id } = product
     return (
         <div>
-            <div className="card w-3/4 h-4/6 bg-base-100 shadow-xl hover:shadow-2xl hover:-translate-y-3 duration-200">
+            <div className="card w-full h-3/4 bg-base-100 shadow-xl hover:shadow-2xl hover:-translate-y-3 duration-200">
                 <figure><img src={photo} className="h-4/5" alt="Shoes" /></figure>
                 <div className="card-body">
                     <h2 className="card-title">{name}</h2>
@@ -16,8 +16,13 @@ const Products = ({ product }) => {
                         <p className="font-semibold">{type}</p>
                         <h3 className="font-semibold">{price}$</h3>
                     </div>
-                    <p>{description}</p>
-                    <div className="rating mt-6 justify-center">
+                    {
+                        description.length > 70 ? 
+                        <p>{description.slice(0,70)}<span className="font-semibold text-blue-500"> Click Details to read more...</span></p>
+                        :
+                        <p>{description}</p>
+                    }
+                    <div className="rating justify-center">
                         <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
                         <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
                         <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />

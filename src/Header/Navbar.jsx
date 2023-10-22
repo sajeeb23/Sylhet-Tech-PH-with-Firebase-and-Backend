@@ -3,14 +3,14 @@ import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 
 const Navbar = () => {
-  const { user, logOut } = useContext(AuthContext);
+  const { user, logOut, photoURL } = useContext(AuthContext);
 
   const handleSignOut = () => {
     logOut()
       .then()
       .catch();
   };
-  console.log(user);
+
   return (
     <div>
       <div className="navbar bg-base-100 justify-between">
@@ -85,11 +85,10 @@ const Navbar = () => {
           <div className="avatar">
             <div className="w-12 rounded-full">
               {user ? (
-                <img src={user.photo} alt="User" />
+                <img src={photoURL || "user.png"} alt="User" />
               ) : (
                 <img src="user.png" alt="" />
               )}
-              
             </div>
           </div>
         </div>

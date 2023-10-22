@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const Login = () => {
 
@@ -19,11 +20,24 @@ const Login = () => {
         signIn(email, password)
             .then(result =>{
                 console.log(result.user);
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Login Successful',
+                    text: 'You have successfully logged in.',
+                    
+                });
                 navigate(location?.state ? location.state : '/');
             })
             .catch(error => {
                 console.error(error)
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Login Failed',
+                    text: 'Wrong email or password. Please try again.',
+                });
             })
+                
+            
     }
 
     return (
