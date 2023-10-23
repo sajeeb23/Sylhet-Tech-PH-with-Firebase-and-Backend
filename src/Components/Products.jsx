@@ -3,6 +3,7 @@
 import { Link } from "react-router-dom";
 
 const Products = ({ product }) => {
+    
 
     const { name, brandname, type, price, description, photo, _id } = product
     return (
@@ -30,7 +31,7 @@ const Products = ({ product }) => {
                         <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
                     </div>
                     <div className="card-actions items-center justify-center">
-                        <button className="btn bg-blue-500 text-white">Details</button>
+                        <Link to={`/productDetails/${_id}`}><button className="btn bg-blue-500 text-white">Details</button></Link>
                         <Link to={`/updateProducts/${_id}`}><button className="btn bg-blue-500 text-white">Update</button></Link>
                     </div>
 

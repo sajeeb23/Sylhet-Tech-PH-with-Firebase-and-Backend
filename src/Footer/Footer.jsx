@@ -1,7 +1,7 @@
 
 const Footer = () => {
     return (
-        <div className="mx-12">
+        <div className="mx-4 md:mx-12 lg:mx-12">
             <footer className="footer footer-center p-10 bg-blue-500 text-white">
                 <aside>
                    <img src="logo1.png" className="bg-white rounded-full" alt="" />
