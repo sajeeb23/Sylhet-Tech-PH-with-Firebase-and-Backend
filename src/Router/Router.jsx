@@ -8,6 +8,7 @@ import SignUp from "../Pages/SignUp";
 import Login from "../Pages/Login";
 import PrivateRoute from "./PrivateRoute";
 import ProductDetails from "../Components/ProductDetails";
+import BrandPage from "../Components/BrandPage";
 
 const myRoute = createBrowserRouter([
     {
@@ -19,6 +20,11 @@ const myRoute = createBrowserRouter([
             element:<Home></Home>,
             loader: ()=> fetch('http://localhost:5000/products')
             
+        },
+        {
+            path: '/brandpage/:brandname',
+            element: <BrandPage></BrandPage>,
+            loader: ({params})=> fetch(`http://localhost:5000/product/${params.brandname}`)
         },
 
         {

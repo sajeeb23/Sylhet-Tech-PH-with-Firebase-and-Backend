@@ -1,0 +1,5 @@
+google sign in
+extra two more sections in the home page
+dark mode toggle
+product add to cart
+github readme... live link, project features

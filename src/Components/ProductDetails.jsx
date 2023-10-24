@@ -6,7 +6,7 @@ const ProductDetails = () => {
     const { name, brandname, type, price, description, photo } = products;
 
     return (
-        <div className="container mx-2 md:mx-auto lg:mx-auto my-11">
+        <div className="container mx-2 md:mx-auto lg:mx-auto my-14">
             <h2 className="text-4xl font-bold">{name}</h2>
             <div className="my-8 flex items-center justify-center">
                 <img src={photo} className="w-3/5" alt={name} />
