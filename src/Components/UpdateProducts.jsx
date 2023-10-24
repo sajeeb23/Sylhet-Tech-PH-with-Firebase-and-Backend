@@ -57,7 +57,7 @@ const UpdateProducts = () => {
             <p className="font-bold text-4xl text-center my-3">Update product!</p>
 
             <form onSubmit={handleUpdateProduct}>
-                <div className="mx-14 flex gap-12 items-center justify-center bg-white shadow-2xl py-20">
+                <div className="mx-14 px-8 md:px-96 lg:px-0 md:flex lg:flex gap-12 items-center justify-center bg-white shadow-2xl py-20">
 
                     <div>
                         <div className="form-control">
@@ -74,7 +74,7 @@ const UpdateProducts = () => {
                             </label>
                         </div>
 
-                        <select name="type" defaultValue={type} className="mt-7 select select-bordered max-w-xs">
+                        <select name="type" defaultValue={type} className="my-4 lg:mt-7 md:mt-7 select-bordered max-w-xs">
                             <option disabled defaultValue={''}>Type</option>
                             <option>Phones</option>
                             <option>Computer</option>
