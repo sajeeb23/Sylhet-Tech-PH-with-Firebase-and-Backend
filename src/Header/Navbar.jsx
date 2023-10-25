@@ -3,7 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 
 const Navbar = () => {
-  const { user, logOut, photoURL } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
 
   const handleSignOut = () => {
     logOut()
@@ -30,8 +30,8 @@ const Navbar = () => {
                 isPending
                   ? "pending"
                   : isActive
-                  ? "bg-blue-700 text-white py-2 px-3 rounded-l-xl"
-                  : "bg-blue-500 text-white py-2 px-3 rounded-l-xl"
+                    ? "bg-blue-700 text-white py-2 px-3 rounded-l-xl"
+                    : "bg-blue-500 text-white py-2 px-3 rounded-l-xl"
               }
             >
               Home
@@ -43,8 +43,8 @@ const Navbar = () => {
                 isPending
                   ? "pending"
                   : isActive
-                  ? "bg-blue-700 text-white py-2 px-3"
-                  : "bg-blue-500 text-white py-2 px-3"
+                    ? "bg-blue-700 text-white py-2 px-3"
+                    : "bg-blue-500 text-white py-2 px-3"
               }
             >
               Add Product
@@ -56,8 +56,8 @@ const Navbar = () => {
                 isPending
                   ? "pending"
                   : isActive
-                  ? "bg-blue-700 text-white py-2 px-3"
-                  : "bg-blue-500 text-white py-2 px-3"
+                    ? "bg-blue-700 text-white py-2 px-3"
+                    : "bg-blue-500 text-white py-2 px-3"
               }
             >
               My Cart
@@ -74,8 +74,8 @@ const Navbar = () => {
                   isPending
                     ? "pending"
                     : isActive
-                    ? "bg-blue-700 text-white py-2 px-3 rounded-r-xl"
-                    : "bg-blue-500 text-white py-2 px-3 rounded-r-xl"
+                      ? "bg-blue-700 text-white py-2 px-3 rounded-r-xl"
+                      : "bg-blue-500 text-white py-2 px-3 rounded-r-xl"
                 }
               >
                 Sign Up
@@ -85,7 +85,7 @@ const Navbar = () => {
           <div className="avatar">
             <div className="w-12 rounded-full">
               {user ? (
-                <img src={photoURL || "user.png"} alt="User" />
+                <img src={user.photoURL || "user.png"} alt="User" />
               ) : (
                 <img src="user.png" alt="" />
               )}

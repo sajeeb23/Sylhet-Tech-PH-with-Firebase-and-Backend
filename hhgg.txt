@@ -1,5 +1,5 @@
-google sign in
-extra two more sections in the home page
-dark mode toggle
-product add to cart
+
+dark mode toggle 
+product add to cart dont want to do
 github readme... live link, project features
+navbar navlink problems in dynamic

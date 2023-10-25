@@ -1,11 +1,12 @@
 import { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
+import { getAuth, GoogleAuthProvider, signInWithPopup, updateProfile } from 'firebase/auth';
 import Swal from "sweetalert2";
 
 const Login = () => {
 
-    const {signIn} = useContext(AuthContext)
+    const { signIn } = useContext(AuthContext)
     const location = useLocation();
     const navigate = useNavigate();
     console.log(location);
@@ -18,13 +19,13 @@ const Login = () => {
         const password = form.get('password');
         console.log(email, password);
         signIn(email, password)
-            .then(result =>{
+            .then(result => {
                 console.log(result.user);
                 Swal.fire({
                     icon: 'success',
                     title: 'Login Successful',
                     text: 'You have successfully logged in.',
-                    
+
                 });
                 navigate(location?.state ? location.state : '/');
             })
@@ -36,9 +37,30 @@ const Login = () => {
                     text: 'Wrong email or password. Please try again.',
                 });
             })
-                
-            
+
+
     }
+    const handleGoogleSignIn = () => {
+        const auth = getAuth();
+        const provider = new GoogleAuthProvider();
+        signInWithPopup(auth, provider)
+        .then((result) => {
+            const user = result.user;
+            // Update the user's profile with photoURL
+            updateProfile(user, {
+              photoURL: user.photoURL,
+            })
+              .then(() => {
+                // Profile updated successfully
+              })
+              .catch((error) => {
+                console.error('Error updating profile:', error);
+              });
+          })
+            .catch(error => {
+                console.error(error);
+            });
+    };
 
     return (
         <div>
@@ -62,13 +84,17 @@ const Login = () => {
                                 </label>
                                 <input type="password" name="password" placeholder="password" className="input input-bordered" required />
                                 <label className="label">
-                                <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
-                            </label>
+                                    <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
+                                </label>
                             </div>
                             <div className="form-control mt-6">
                                 <button className="btn btn-primary">Login</button>
                             </div>
                         </form>
+
+                        <button onClick={handleGoogleSignIn} className="btn btn-google">
+                            Login with Google
+                        </button>
                         <p className="mx-auto mb-4">Do not have an account? <Link to="/signup" className="text-blue-700">Sign Up</Link></p>
 
                     </div>
