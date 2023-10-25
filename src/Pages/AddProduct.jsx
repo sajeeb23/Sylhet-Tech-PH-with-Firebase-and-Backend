@@ -25,7 +25,7 @@ const AddProduct = () => {
         };
         console.log(newProduct);
 
-        fetch('https://assignment-10-server-76tu83fuc-sjb.vercel.appproducts', {
+        fetch('https://assignment-10-server-hzdkwkbjb-sjb.vercel.app/products', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

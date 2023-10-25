@@ -1,5 +1,0 @@
-
-dark mode toggle 
-product add to cart dont want to do
-github readme... live link, project features
-navbar navlink problems in dynamic

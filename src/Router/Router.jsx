@@ -20,13 +20,13 @@ const myRoute = createBrowserRouter([
         {
             path:'/',
             element:<Home></Home>,
-            loader: ()=> fetch('https://assignment-10-server-76tu83fuc-sjb.vercel.appproducts')
+            loader: ()=> fetch('https://assignment-10-server-hzdkwkbjb-sjb.vercel.app/products')
             
         },
         {
             path: '/brandpage/:brandname',
             element: <BrandPage></BrandPage>,
-            loader: ({params})=> fetch(`https://assignment-10-server-76tu83fuc-sjb.vercel.appproduct/${params.brandname}`)
+            loader: ({params})=> fetch(`https://assignment-10-server-hzdkwkbjb-sjb.vercel.app/product/${params.brandname}`)
         },
 
         {
@@ -51,12 +51,12 @@ const myRoute = createBrowserRouter([
         {
             path: '/updateProducts/:id',
             element: <PrivateRoute><UpdateProducts></UpdateProducts></PrivateRoute>,
-            loader: ({params})=> fetch(`https://assignment-10-server-76tu83fuc-sjb.vercel.appproducts/${params.id}`)
+            loader: ({params})=> fetch(`https://assignment-10-server-hzdkwkbjb-sjb.vercel.app/products/${params.id}`)
         },
         {
             path: '/productDetails/:id',
             element: <PrivateRoute><ProductDetails></ProductDetails></PrivateRoute>,
-            loader: ({params})=> fetch(`https://assignment-10-server-76tu83fuc-sjb.vercel.appproducts/${params.id}`)
+            loader: ({params})=> fetch(`https://assignment-10-server-hzdkwkbjb-sjb.vercel.app/products/${params.id}`)
         }
     ]
     }
