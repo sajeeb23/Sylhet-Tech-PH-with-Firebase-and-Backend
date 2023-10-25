@@ -20,13 +20,13 @@ const myRoute = createBrowserRouter([
         {
             path:'/',
             element:<Home></Home>,
-            loader: ()=> fetch('http://localhost:5000/products')
+            loader: ()=> fetch('https://assignment-10-server-76tu83fuc-sjb.vercel.appproducts')
             
         },
         {
             path: '/brandpage/:brandname',
             element: <BrandPage></BrandPage>,
-            loader: ({params})=> fetch(`http://localhost:5000/product/${params.brandname}`)
+            loader: ({params})=> fetch(`https://assignment-10-server-76tu83fuc-sjb.vercel.appproduct/${params.brandname}`)
         },
 
         {
@@ -51,12 +51,12 @@ const myRoute = createBrowserRouter([
         {
             path: '/updateProducts/:id',
             element: <PrivateRoute><UpdateProducts></UpdateProducts></PrivateRoute>,
-            loader: ({params})=> fetch(`http://localhost:5000/products/${params.id}`)
+            loader: ({params})=> fetch(`https://assignment-10-server-76tu83fuc-sjb.vercel.appproducts/${params.id}`)
         },
         {
             path: '/productDetails/:id',
             element: <PrivateRoute><ProductDetails></ProductDetails></PrivateRoute>,
-            loader: ({params})=> fetch(`http://localhost:5000/products/${params.id}`)
+            loader: ({params})=> fetch(`https://assignment-10-server-76tu83fuc-sjb.vercel.appproducts/${params.id}`)
         }
     ]
     }
