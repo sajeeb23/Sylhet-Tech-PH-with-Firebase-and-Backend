@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 import { getAuth, GoogleAuthProvider, signInWithPopup, updateProfile } from 'firebase/auth';
 import Swal from "sweetalert2";
+import { FcGoogle } from 'react-icons/fc';
 
 const Login = () => {
 
@@ -46,7 +47,7 @@ const Login = () => {
         signInWithPopup(auth, provider)
         .then((result) => {
             const user = result.user;
-            // Update the user's profile with photoURL
+    
             updateProfile(user, {
               photoURL: user.photoURL,
             })
@@ -93,7 +94,7 @@ const Login = () => {
                         </form>
 
                         <button onClick={handleGoogleSignIn} className="btn btn-google">
-                            Login with Google
+                            <FcGoogle></FcGoogle>Login with Google
                         </button>
                         <p className="mx-auto mb-4">Do not have an account? <Link to="/signup" className="text-blue-700">Sign Up</Link></p>
 
