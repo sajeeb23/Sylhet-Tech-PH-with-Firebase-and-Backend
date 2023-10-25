@@ -22,9 +22,9 @@ const Navbar = () => {
             </p>
           </Link>
         </div>
-        <div className="flex items-center">
+        <div className="flex  items-center">
           {user ? (
-            <div className="hidden md:block lg:block flex gap-3 items-center">
+            <div className="hidden md:flex lg:flex gap-3 items-center">
               <div className="w-1/12 text-center mr-4 rounded-full">
                 <div className="flex justify-center items-center font-semibold text-center">
                   {user.displayName}
