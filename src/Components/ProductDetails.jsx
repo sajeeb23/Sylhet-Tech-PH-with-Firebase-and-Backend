@@ -15,7 +15,7 @@ const ProductDetails = () => {
             <p className="my-2 text-xl font-semibold">Type: {type}</p>
             <p className="my-2 text-xl font-semibold">Price: {price}$</p>
             <p className="my-2 text-lg text">{description}</p>
-            <button>Add to Carts</button>
+            
 
         </div>
     );
